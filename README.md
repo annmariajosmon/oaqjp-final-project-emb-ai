@@ -34,3 +34,24 @@ It also returns the dominant emotion in the text.
 ## How to Run the Application
 
 ### 1. Install dependencies
+pip install flask requests
+
+### 2. Run the Flask app
+python3 server.py
+
+
+### 3. Open in browser
+http://127.0.0.1:5000
+
+
+---
+
+## API Usage
+
+
+### Endpoint
+/emotionDetector?textToAnalyze=I am happy
+
+
+### Example
+http://127.0.0.1:5000/emotionDetector?textToAnalyze=I%20am%20happy
