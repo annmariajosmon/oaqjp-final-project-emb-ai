@@ -1,10 +1,14 @@
-import requests
+"""
+Emotion detection module using Watson NLP API.
+"""
+
 import json
+import requests
 
 
 def emotion_detector(text_to_analyse):
     """
-    Analyze emotions from input text using Watson API.
+    Detect emotions from input text.
     """
 
     url = (
@@ -23,13 +27,37 @@ def emotion_detector(text_to_analyse):
         }
     }
 
-    response = requests.post(url, json=myobj, headers=header)
+    response = requests.post(
+        url,
+        json=myobj,
+        headers=header,
+        timeout=10
+    )
 
-    formatted_response = json.loads(response.text)
+    if response.status_code == 400:
+        return {
+            "anger": None,
+            "disgust": None,
+            "fear": None,
+            "joy": None,
+            "sadness": None,
+            "dominant_emotion": None
+        }
 
-    emotions = formatted_response["emotionPredictions"][0]["emotion"]
+    formatted_response = json.loads(
+        response.text
+    )
 
-    dominant_emotion = max(emotions, key=emotions.get)
+    emotions = (
+        formatted_response[
+            "emotionPredictions"
+        ][0]["emotion"]
+    )
+
+    dominant_emotion = max(
+        emotions,
+        key=emotions.get
+    )
 
     return {
         "anger": emotions["anger"],
