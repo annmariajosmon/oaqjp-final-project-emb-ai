@@ -33,14 +33,4 @@ It also returns the dominant emotion in the text.
 
 ## How to Run the Application
 
-Install dependencies:
-pip install flask requests
-
-Run the app:
-python3 server.py
-
-Open:
-http://127.0.0.1:5000
-
-## API
-/emotionDetector?textToAnalyze=I am happy
+### 1. Install dependencies
